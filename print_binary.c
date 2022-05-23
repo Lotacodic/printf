@@ -1,13 +1,14 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdarg.h>
 #include <stddef.h>
+#include <unistd.h>
 /**
- * _print_octal - is a function that prints octal digits
- * @args: the agrument that accepts the input value
- * Return: the character written.
+ * _print_bin - is a function that converts unsigned integer into binary
+ * @args: accepts incoming unsigned int arguements
+ * Return: the number of character printed
  */
-int _print_octal(va_list args)
+
+int _print_bin(va_list args)
 {
 	int n = va_arg(args, int);
 	unsigned int length = 0, power = 1, k, digit, count = 0, number;
@@ -17,18 +18,18 @@ int _print_octal(va_list args)
 		number = n;
 		while (number != 0)
 		{
-			number /= 8;
+			number /= 2;
 			length++;
 		}
 		for (k = 1; k <= length - 1; k++)
-			power *= 8;
+			power *= 2;
 		for (k = 1; k <= length; k++)
 		{
 			digit = n / power;
 			_putchar(digit + '0');
 			count++;
 			n -= digit * power;
-			power /= 8;
+			power /= 2;
 		}
 	}
 	else
@@ -37,5 +38,4 @@ int _print_octal(va_list args)
 		return (1);
 	}
 	return (count);
-
 }
